@@ -1,104 +1,104 @@
-//__________________________THIS IS MY REST OF POSITIVE USERS TEST!______________________COPY AND PASTE THIS TO MyTest.js ONCE FINISHED AND IT 100% WORKS FULLY AND FINE!
-// We are removing the loop test/ the one using the array, and testing each one individually first. Then in my update (Test 2) I can make the loop using AI Via the test I already have. We are just making individual tests for each username/user, and then creating a loop and polishing it in Test 2!
+// //__________________________THIS IS MY REST OF POSITIVE USERS TEST!______________________COPY AND PASTE THIS TO MyTest.js ONCE FINISHED AND IT 100% WORKS FULLY AND FINE!
+// // We are removing the loop test/ the one using the array, and testing each one individually first. Then in my update (Test 2) I can make the loop using AI Via the test I already have. We are just making individual tests for each username/user, and then creating a loop and polishing it in Test 2!
 
-import { browser, expect } from '@wdio/globals';
-import theLoginPage from '../pageobjects/loginpage.js';
-import theSecurePage from '../pageobjects/HamburgerMenuPage.js';
-import LogoutProcess from '../pageobjects/secureLogoutPage.js';
-import sauceLabsPageFunctions from '../pageobjects/sauceLabsPage.js';
+// import { browser, expect } from '@wdio/globals';
+// import theLoginPage from '../pageobjects/loginpage.js';
+// import theSecurePage from '../pageobjects/HamburgerMenuPage.js';
+// import LogoutProcess from '../pageobjects/secureLogoutPage.js';
+// import sauceLabsPageFunctions from '../pageobjects/sauceLabsPage.js';
 
-describe('My Login application', () => {
+// describe('My Login application', () => {
 
 
-   it('should login with valid credentials using the standard_user username to sign in and visit Sauce Labs', async () => {
-       await browser.reloadSession();
-        // Login
-       await theLoginPage.open();
-       await theLoginPage.login('standard_user', 'secret_sauce');
-       await expect(theSecurePage.landingPage).toBeExisting();
+//    it('should login with valid credentials using the standard_user username to sign in and visit Sauce Labs', async () => {
+//        await browser.reloadSession();
+//         // Login
+//        await theLoginPage.open();
+//        await theLoginPage.login('standard_user', 'secret_sauce');
+//        await expect(theSecurePage.landingPage).toBeExisting();
 
 
-       // Open Hamburger Menu
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
+//        // Open Hamburger Menu
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
 
 
-       // Wait for About link to exist and be clickable
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isExisting(),
-           { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isClickable(),
-           { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
-       );
+//        // Wait for About link to exist and be clickable
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isExisting(),
+//            { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isClickable(),
+//            { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
+//        );
 
 
-       // The code below will be un-commented if this next test doesn't work, or if we still need it in order for the test to work.
-       // Force About link to open in same tab
-       await browser.execute(() => {
-           const link = document.querySelector('#about_sidebar_link');
-           if (link) link.setAttribute('target', '_self');
-       });
+//        // The code below will be un-commented if this next test doesn't work, or if we still need it in order for the test to work.
+//        // Force About link to open in same tab
+//        await browser.execute(() => {
+//            const link = document.querySelector('#about_sidebar_link');
+//            if (link) link.setAttribute('target', '_self');
+//        });
 
 
-       const handlesBeforeAboutClick = await browser.getWindowHandles();
+//        const handlesBeforeAboutClick = await browser.getWindowHandles();
 
 
-       // Click About
-       await theSecurePage.clickAboutEntry();
+//        // Click About
+//        await theSecurePage.clickAboutEntry();
 
 
-       // If a new tab opened, switch to it. If not, stay in the current tab.
-       await browser.waitUntil(
-           async () => {
-               const handles = await browser.getWindowHandles();
-               if (handles.length > handlesBeforeAboutClick.length) return true;
-               return (await browser.getUrl()).includes('saucelabs.com');
-           },
-           { timeout: 15000, timeoutMsg: 'About click did not open Sauce Labs or a new tab' }
-       );
+//        // If a new tab opened, switch to it. If not, stay in the current tab.
+//        await browser.waitUntil(
+//            async () => {
+//                const handles = await browser.getWindowHandles();
+//                if (handles.length > handlesBeforeAboutClick.length) return true;
+//                return (await browser.getUrl()).includes('saucelabs.com');
+//            },
+//            { timeout: 15000, timeoutMsg: 'About click did not open Sauce Labs or a new tab' }
+//        );
 
 
 
 
-       const handlesAfterAboutClick = await browser.getWindowHandles();
-       if (handlesAfterAboutClick.length > handlesBeforeAboutClick.length) {
-           const newHandle = handlesAfterAboutClick.find((h) => !handlesBeforeAboutClick.includes(h));
-           if (newHandle) {
-               await browser.switchToWindow(newHandle);
-           }
-       }
+//        const handlesAfterAboutClick = await browser.getWindowHandles();
+//        if (handlesAfterAboutClick.length > handlesBeforeAboutClick.length) {
+//            const newHandle = handlesAfterAboutClick.find((h) => !handlesBeforeAboutClick.includes(h));
+//            if (newHandle) {
+//                await browser.switchToWindow(newHandle);
+//            }
+//        }
 
 
 
 
-       // Wait for Sauce Labs page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('saucelabs.com'),
-           { timeout: 15000, timeoutMsg: 'Page transition to Sauce Labs failed' }
-       );
+//        // Wait for Sauce Labs page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('saucelabs.com'),
+//            { timeout: 15000, timeoutMsg: 'Page transition to Sauce Labs failed' }
+//        );
 
 
 
 
-       await browser.pause(1000); // short pause so About page can finish loading
+//        await browser.pause(1000); // short pause so About page can finish loading
 
-       // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
-       await browser.reloadSession();
-       await theLoginPage.open();
-       await theLoginPage.login('standard_user', 'secret_sauce');
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
-       );
+//        // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
+//        await browser.reloadSession();
+//        await theLoginPage.open();
+//        await theLoginPage.login('standard_user', 'secret_sauce');
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
+//        );
 
 
 
 
-       // Cart operations
-    //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       await theSecurePage.clickAddFirstItemToCartBtn();
+//        // Cart operations
+//     //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        await theSecurePage.clickAddFirstItemToCartBtn();
 
 
 
@@ -107,11 +107,11 @@ describe('My Login application', () => {
 
 
 
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
-       await theSecurePage.clickResetAppState();
-       await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
-       await theSecurePage.clickTheXBtn();
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
+//        await theSecurePage.clickResetAppState();
+//        await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
+//        await theSecurePage.clickTheXBtn();
 
 
 
@@ -120,9 +120,9 @@ describe('My Login application', () => {
 
 
 
-       await browser.refresh();
-    //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       await theSecurePage.clickAddFirstItemToCartBtn();
+//        await browser.refresh();
+//     //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        await theSecurePage.clickAddFirstItemToCartBtn();
 
 
 
@@ -131,11 +131,11 @@ describe('My Login application', () => {
 
 
 
-       await browser.waitUntil(
-           async () => theSecurePage.removeItemFromCartBtn.isClickable(),
-           { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
-       );
-       await theSecurePage.clickRemoveItemFromCartBtn();
+//        await browser.waitUntil(
+//            async () => theSecurePage.removeItemFromCartBtn.isClickable(),
+//            { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
+//        );
+//        await theSecurePage.clickRemoveItemFromCartBtn();
 
 
 
@@ -144,8 +144,8 @@ describe('My Login application', () => {
 
 
 
-       // Hamburger menu operations - Backpack -> All Items
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Hamburger menu operations - Backpack -> All Items
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
@@ -154,11 +154,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait until backpack page is fully loaded
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
-       );
+//        // Wait until backpack page is fully loaded
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
+//        );
 
 
 
@@ -167,11 +167,11 @@ describe('My Login application', () => {
 
 
 
-       // Open Hamburger menu on backpack page
-       await theSecurePage.openHamburgerMenu();
+//        // Open Hamburger menu on backpack page
+//        await theSecurePage.openHamburgerMenu();
  
-       await browser.pause(1000); // wait for menu animation
-       await theSecurePage.clickAllItemsEntry(); // waits 10s internally
+//        await browser.pause(1000); // wait for menu animation
+//        await theSecurePage.clickAllItemsEntry(); // waits 10s internally
 
 
 
@@ -180,13 +180,13 @@ describe('My Login application', () => {
 
 
 
-       // Wait until the page is the main inventory page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
-       );
-       await browser.pause(1000); // wait for any animations
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Wait until the page is the main inventory page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
+//        );
+//        await browser.pause(1000); // wait for any animations
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
@@ -195,16 +195,16 @@ describe('My Login application', () => {
 
 
 
-       // Wait until backpack page is fully loaded again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load after clicking backpack button again' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.backToProductsBtn.isExisting(),
-           { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
-       );
-       await theSecurePage.clickBackToProductsBtn();
+//        // Wait until backpack page is fully loaded again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load after clicking backpack button again' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.backToProductsBtn.isExisting(),
+//            { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
+//        );
+//        await theSecurePage.clickBackToProductsBtn();
 
 
 
@@ -213,11 +213,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait until the page is the main inventory page again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
-       );
+//        // Wait until the page is the main inventory page again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
+//        );
 
 
 
@@ -226,9 +226,9 @@ describe('My Login application', () => {
 
 
 
-       // Wait until hamburger menu button is interactable again
-       let burgerBtn = await LogoutProcess.hamburgerMenu();
-       await burgerBtn.waitForClickable({ timeout: 5000 });
+//        // Wait until hamburger menu button is interactable again
+//        let burgerBtn = await LogoutProcess.hamburgerMenu();
+//        await burgerBtn.waitForClickable({ timeout: 5000 });
 
 
 
@@ -237,8 +237,8 @@ describe('My Login application', () => {
 
 
 
-       // Scroll it into view just in case
-       await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
+//        // Scroll it into view just in case
+//        await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
 
 
 
@@ -247,22 +247,22 @@ describe('My Login application', () => {
 
 
 
-       // Now call your existing logout
-       await LogoutProcess.logout();
-   });
-});
+//        // Now call your existing logout
+//        await LogoutProcess.logout();
+//    });
+// });
      
-//   My REFERENCE:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
-describe('My Login application', () => {
+// //   My REFERENCE:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
+// describe('My Login application', () => {
 
 
-   it('should login with valid credentials using the problem_user username then loging in and visiting Sauce Labs', async () => {
-    await browser.reloadSession();
-    await browser.url('https://www.saucedemo.com/');  
-    // Login
-       await theLoginPage.open();
-       await theLoginPage.login('problem_user', 'secret_sauce');
-       await expect(theSecurePage.landingPage).toBeExisting();
+//    it('should login with valid credentials using the problem_user username then loging in and visiting Sauce Labs', async () => {
+//     await browser.reloadSession();
+//     await browser.url('https://www.saucedemo.com/');  
+//     // Login
+//        await theLoginPage.open();
+//        await theLoginPage.login('problem_user', 'secret_sauce');
+//        await expect(theSecurePage.landingPage).toBeExisting();
 
 
 
@@ -271,9 +271,9 @@ describe('My Login application', () => {
 
 
 
-       // Open Hamburger Menu
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
+//        // Open Hamburger Menu
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
 
 
 
@@ -282,15 +282,15 @@ describe('My Login application', () => {
 
 
 
-       // Wait for About link to exist and be clickable
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isExisting(),
-           { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isClickable(),
-           { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
-       );
+//        // Wait for About link to exist and be clickable
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isExisting(),
+//            { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isClickable(),
+//            { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
+//        );
 
 
 
@@ -299,11 +299,11 @@ describe('My Login application', () => {
 
 
 
-       // Force About link to open in same tab
-       await browser.execute(() => {
-           const link = document.querySelector('#about_sidebar_link');
-           if (link) link.setAttribute('target', '_self');
-       });
+//        // Force About link to open in same tab
+//        await browser.execute(() => {
+//            const link = document.querySelector('#about_sidebar_link');
+//            if (link) link.setAttribute('target', '_self');
+//        });
 
 
 
@@ -312,8 +312,8 @@ describe('My Login application', () => {
 
 
 
-       // Click About
-       await theSecurePage.clickAboutEntry();
+//        // Click About
+//        await theSecurePage.clickAboutEntry();
 
 
 
@@ -322,11 +322,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait for Sauce Labs page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('/error/404'),
-           { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
-       );
+//        // Wait for Sauce Labs page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('/error/404'),
+//            { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
+//        );
 
 
 
@@ -335,64 +335,64 @@ describe('My Login application', () => {
 
 
 
-       await browser.pause(1000); // short pause so About page can finish loading
+//        await browser.pause(1000); // short pause so About page can finish loading
 
-       // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
-       await browser.reloadSession();
-       await theLoginPage.open();
-       await theLoginPage.login('problem_user', 'secret_sauce');
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
-       );
+//        // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
+//        await browser.reloadSession();
+//        await theLoginPage.open();
+//        await theLoginPage.login('problem_user', 'secret_sauce');
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
+//        );
 
 
 
 
-       // Cart operations
-    //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       await theSecurePage.clickAddFirstItemToCartBtn();
+//        // Cart operations
+//     //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        await theSecurePage.clickAddFirstItemToCartBtn();
 
 
 
 
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
-       await theSecurePage.clickResetAppState();
-       await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
-       await theSecurePage.clickTheXBtn();
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
+//        await theSecurePage.clickResetAppState();
+//        await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
+//        await theSecurePage.clickTheXBtn();
 
 
 
 
-       await browser.refresh();
-       //The remove item from cart button has a bug, and therefore doesn't work, so we're going to ignore it
-       // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       // await theSecurePage.clickAddFirstItemToCartBtn();
+//        await browser.refresh();
+//        //The remove item from cart button has a bug, and therefore doesn't work, so we're going to ignore it
+//        // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        // await theSecurePage.clickAddFirstItemToCartBtn();
 
 
 
 
-       // await browser.waitUntil(
-       //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
-       //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
-       // );
-       // await theSecurePage.clickRemoveItemFromCartBtn();
+//        // await browser.waitUntil(
+//        //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
+//        //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
+//        // );
+//        // await theSecurePage.clickRemoveItemFromCartBtn();
 
 
 
 
-       // Hamburger menu operations - Backpack -> All Items
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Hamburger menu operations - Backpack -> All Items
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
 
-       // Wait until backpack page is fully loaded
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=5'),
-           { timeout: 10000, timeoutMsg: 'Sauce Labs Fleece Jacket page instead of the backpack page did not load' }
-       );
+//        // Wait until backpack page is fully loaded
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=5'),
+//            { timeout: 10000, timeoutMsg: 'Sauce Labs Fleece Jacket page instead of the backpack page did not load' }
+//        );
 
 
 
@@ -401,11 +401,11 @@ describe('My Login application', () => {
 
 
 
-       // Open Hamburger menu on backpack page
-       await theSecurePage.openHamburgerMenu();
+//        // Open Hamburger menu on backpack page
+//        await theSecurePage.openHamburgerMenu();
  
-       await browser.pause(1000); // wait for menu animation
-       await theSecurePage.clickAllItemsEntry(); // waits 10s internally
+//        await browser.pause(1000); // wait for menu animation
+//        await theSecurePage.clickAllItemsEntry(); // waits 10s internally
 
 
 
@@ -414,13 +414,13 @@ describe('My Login application', () => {
 
 
 
-       // Wait until the page is the main inventory page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
-       );
-       await browser.pause(1000); // wait for any animations
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Wait until the page is the main inventory page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
+//        );
+//        await browser.pause(1000); // wait for any animations
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
@@ -429,16 +429,16 @@ describe('My Login application', () => {
 
 
 
-       // Wait until backpack page is fully loaded again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=5'),
-           { timeout: 10000, timeoutMsg: 'Fleece Jacket page did not load after clicking backpack button again' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.backToProductsBtn.isExisting(),
-           { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
-       );
-       await theSecurePage.clickBackToProductsBtn();
+//        // Wait until backpack page is fully loaded again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=5'),
+//            { timeout: 10000, timeoutMsg: 'Fleece Jacket page did not load after clicking backpack button again' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.backToProductsBtn.isExisting(),
+//            { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
+//        );
+//        await theSecurePage.clickBackToProductsBtn();
 
 
 
@@ -447,28 +447,18 @@ describe('My Login application', () => {
 
 
 
-       // Wait until the page is the main inventory page again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
-       );
+//        // Wait until the page is the main inventory page again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
+//        );
 
 
 
 
-       // Wait until hamburger menu button is interactable again
-       let burgerBtn = await LogoutProcess.hamburgerMenu();
-       await burgerBtn.waitForClickable({ timeout: 5000 });
-
-
-
-
-
-
-
-
-       // Scroll it into view just in case
-       await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
+//        // Wait until hamburger menu button is interactable again
+//        let burgerBtn = await LogoutProcess.hamburgerMenu();
+//        await burgerBtn.waitForClickable({ timeout: 5000 });
 
 
 
@@ -477,10 +467,292 @@ describe('My Login application', () => {
 
 
 
-       // Now call your existing logout
-       await LogoutProcess.logout();
-   });
-});
+//        // Scroll it into view just in case
+//        await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
+
+
+
+
+
+
+
+
+//        // Now call your existing logout
+//        await LogoutProcess.logout();
+//    });
+// });
+
+
+
+
+
+
+
+
+// // //   My REFERENCE:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
+// describe('My Login application', () => {
+
+
+//    it('should login with valid credentials using the username performance_glitch_user and visit Sauce Labs', async () => {
+//        await browser.reloadSession();
+//        await browser.url('https://www.saucedemo.com/');
+//         // Login
+//        await theLoginPage.open();
+//        await theLoginPage.login('performance_glitch_user', 'secret_sauce');
+//        await expect(theSecurePage.landingPage).toBeExisting({ timeout: 30000, timeoutMsg: 'Login took too long and could not be completed in 30 seconds'});
+
+
+
+
+//       // Open Hamburger Menu
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
+
+
+
+
+//        // Wait for About link to exist and be clickable
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isExisting(),
+//            { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isClickable(),
+//            { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
+//        );
+
+
+
+
+//        // Force About link to open in same tab
+//        await browser.execute(() => {
+//            const link = document.querySelector('#about_sidebar_link');
+//            if (link) link.setAttribute('target', '_self');
+//        });
+
+
+
+
+//        // Click About
+//        await theSecurePage.clickAboutEntry();
+
+
+
+
+//        // Wait for Sauce Labs page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('saucelabs.com'),
+//            { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
+//        );
+
+
+
+
+//        await browser.pause(1000); // short pause so About page can finish loading
+
+//        // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
+//        await browser.reloadSession();
+//        await theLoginPage.open();
+//        await theLoginPage.login('performance_glitch_user', 'secret_sauce');
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
+//        );
+
+
+
+
+
+
+
+
+//        // Cart operations
+//     //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        await theSecurePage.clickAddFirstItemToCartBtn();
+
+
+
+
+
+
+
+
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
+//        await theSecurePage.clickResetAppState();
+//        await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
+//        await theSecurePage.clickTheXBtn();
+
+
+
+
+
+
+
+
+//        await browser.refresh();
+//        // There is a bug where you cannot click the remove button on the sauce labs backpack remove section. So we will just skip it and refresh the page since it removes it that way and doesn't save it.
+//        // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        // await theSecurePage.clickAddFirstItemToCartBtn();
+
+
+
+
+
+
+
+
+//        // await browser.waitUntil(
+//        //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
+//        //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
+//        // );
+//        // await theSecurePage.clickRemoveItemFromCartBtn();
+
+
+
+
+
+
+
+
+//        // Hamburger menu operations - Backpack -> All Items
+//        await theSecurePage.sauceLabsBackpack.scrollIntoView({ timeout: 10000, timeoutMsg: 'saucebLabsBackpack did not appear on the Sauce Labs homepage' });
+//        await theSecurePage.clickSauceLabsBackpackBtn();
+
+
+
+
+
+
+
+
+//        // Wait until backpack page is fully loaded
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
+//        );
+
+
+
+
+
+
+
+
+//        // Open Hamburger menu on backpack page
+//        await theSecurePage.openHamburgerMenu();
+ 
+//        await browser.pause(1000); // wait for menu animation
+//        await theSecurePage.clickAllItemsEntry(); // waits 10s internally
+
+
+
+
+
+
+
+
+//        // Wait until the page is the main inventory page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
+//        );
+//        await browser.pause(1000); // wait for any animations
+//        await theSecurePage.clickSauceLabsBackpackBtn();
+
+
+
+
+
+
+
+
+//        // Wait until backpack page is fully loaded again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load after clicking backpack button again' }
+//        );
+
+
+
+
+
+
+
+
+//        await theSecurePage.addToCartBtnForSLBPage.waitForClickable();
+//        await theSecurePage.clickAddToCartBtnForSLBPage();
+
+
+
+
+
+
+
+
+//        await browser.waitUntil(
+//            async () => theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.isExisting(),
+//            { timeout: 10000, timeoutMsg: 'The Remove button on the Sauce Labs Backpack page was not clickable'}
+//        )
+
+
+
+
+
+
+
+
+//        await browser.waitUntil(
+//            async () => theSecurePage.backToProductsBtn.isExisting(),
+//            { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
+//        );
+//        await theSecurePage.clickBackToProductsBtn();
+
+
+
+
+
+
+
+
+//        // Wait until the page is the main inventory page again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
+//        );
+
+
+
+
+
+
+
+
+//        // Wait until hamburger menu button is interactable again
+//        let burgerBtn = await LogoutProcess.hamburgerMenu();
+//        await burgerBtn.waitForClickable({ timeout: 5000 });
+
+
+
+
+
+
+
+
+//        // Scroll it into view just in case
+//        await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
+
+
+
+
+
+
+
+
+//        // Now call your existing logout
+//        await LogoutProcess.logout();
+//    });
+// });
 
 
 
@@ -490,289 +762,17 @@ describe('My Login application', () => {
 
 
 // //   My REFERENCE:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
-describe('My Login application', () => {
+// describe('My Login application', () => {
 
 
-   it('should login with valid credentials using the username performance_glitch_user and visit Sauce Labs', async () => {
-       await browser.reloadSession();
-       await browser.url('https://www.saucedemo.com/');
-        // Login
-       await theLoginPage.open();
-       await theLoginPage.login('performance_glitch_user', 'secret_sauce');
-       await expect(theSecurePage.landingPage).toBeExisting({ timeout: 30000, timeoutMsg: 'Login took too long and could not be completed in 30 seconds'});
-
-
-
-
-      // Open Hamburger Menu
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
-
-
-
-
-       // Wait for About link to exist and be clickable
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isExisting(),
-           { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isClickable(),
-           { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
-       );
-
-
-
-
-       // Force About link to open in same tab
-       await browser.execute(() => {
-           const link = document.querySelector('#about_sidebar_link');
-           if (link) link.setAttribute('target', '_self');
-       });
-
-
-
-
-       // Click About
-       await theSecurePage.clickAboutEntry();
-
-
-
-
-       // Wait for Sauce Labs page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('saucelabs.com'),
-           { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
-       );
-
-
-
-
-       await browser.pause(1000); // short pause so About page can finish loading
-
-       // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
-       await browser.reloadSession();
-       await theLoginPage.open();
-       await theLoginPage.login('performance_glitch_user', 'secret_sauce');
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
-       );
-
-
-
-
-
-
-
-
-       // Cart operations
-    //    await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       await theSecurePage.clickAddFirstItemToCartBtn();
-
-
-
-
-
-
-
-
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
-       await theSecurePage.clickResetAppState();
-       await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
-       await theSecurePage.clickTheXBtn();
-
-
-
-
-
-
-
-
-       await browser.refresh();
-       // There is a bug where you cannot click the remove button on the sauce labs backpack remove section. So we will just skip it and refresh the page since it removes it that way and doesn't save it.
-       // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       // await theSecurePage.clickAddFirstItemToCartBtn();
-
-
-
-
-
-
-
-
-       // await browser.waitUntil(
-       //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
-       //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
-       // );
-       // await theSecurePage.clickRemoveItemFromCartBtn();
-
-
-
-
-
-
-
-
-       // Hamburger menu operations - Backpack -> All Items
-       await theSecurePage.sauceLabsBackpack.scrollIntoView({ timeout: 10000, timeoutMsg: 'saucebLabsBackpack did not appear on the Sauce Labs homepage' });
-       await theSecurePage.clickSauceLabsBackpackBtn();
-
-
-
-
-
-
-
-
-       // Wait until backpack page is fully loaded
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
-       );
-
-
-
-
-
-
-
-
-       // Open Hamburger menu on backpack page
-       await theSecurePage.openHamburgerMenu();
- 
-       await browser.pause(1000); // wait for menu animation
-       await theSecurePage.clickAllItemsEntry(); // waits 10s internally
-
-
-
-
-
-
-
-
-       // Wait until the page is the main inventory page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
-       );
-       await browser.pause(1000); // wait for any animations
-       await theSecurePage.clickSauceLabsBackpackBtn();
-
-
-
-
-
-
-
-
-       // Wait until backpack page is fully loaded again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load after clicking backpack button again' }
-       );
-
-
-
-
-
-
-
-
-       await theSecurePage.addToCartBtnForSLBPage.waitForClickable();
-       await theSecurePage.clickAddToCartBtnForSLBPage();
-
-
-
-
-
-
-
-
-       await browser.waitUntil(
-           async () => theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.isExisting(),
-           { timeout: 10000, timeoutMsg: 'The Remove button on the Sauce Labs Backpack page was not clickable'}
-       )
-
-
-
-
-
-
-
-
-       await browser.waitUntil(
-           async () => theSecurePage.backToProductsBtn.isExisting(),
-           { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
-       );
-       await theSecurePage.clickBackToProductsBtn();
-
-
-
-
-
-
-
-
-       // Wait until the page is the main inventory page again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
-       );
-
-
-
-
-
-
-
-
-       // Wait until hamburger menu button is interactable again
-       let burgerBtn = await LogoutProcess.hamburgerMenu();
-       await burgerBtn.waitForClickable({ timeout: 5000 });
-
-
-
-
-
-
-
-
-       // Scroll it into view just in case
-       await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
-
-
-
-
-
-
-
-
-       // Now call your existing logout
-       await LogoutProcess.logout();
-   });
-});
-
-
-
-
-
-
-
-
-//   My REFERENCE:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
-describe('My Login application', () => {
-
-
-   it('should login with valid credentials using the error_user username to sign in and visit Sauce Labs', async () => {
-       await browser.reloadSession();
-       await browser.url('https://www.saucedemo.com/');
+//    it('should login with valid credentials using the error_user username to sign in and visit Sauce Labs', async () => {
+//        await browser.reloadSession();
+//        await browser.url('https://www.saucedemo.com/');
        
-        // Login
-       await theLoginPage.open();
-       await theLoginPage.login('error_user', 'secret_sauce');
-       await expect(theSecurePage.landingPage).toBeExisting();
+//         // Login
+//        await theLoginPage.open();
+//        await theLoginPage.login('error_user', 'secret_sauce');
+//        await expect(theSecurePage.landingPage).toBeExisting();
 
 
 
@@ -781,9 +781,9 @@ describe('My Login application', () => {
 
 
 
-       // Open Hamburger Menu
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
+//        // Open Hamburger Menu
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
 
 
 
@@ -792,15 +792,15 @@ describe('My Login application', () => {
 
 
 
-       // Wait for About link to exist and be clickable
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isExisting(),
-           { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isClickable(),
-           { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
-       );
+//        // Wait for About link to exist and be clickable
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isExisting(),
+//            { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isClickable(),
+//            { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
+//        );
 
 
 
@@ -809,11 +809,11 @@ describe('My Login application', () => {
 
 
 
-       // Force About link to open in same tab
-       await browser.execute(() => {
-           const link = document.querySelector('#about_sidebar_link');
-           if (link) link.setAttribute('target', '_self');
-       });
+//        // Force About link to open in same tab
+//        await browser.execute(() => {
+//            const link = document.querySelector('#about_sidebar_link');
+//            if (link) link.setAttribute('target', '_self');
+//        });
 
 
 
@@ -822,8 +822,8 @@ describe('My Login application', () => {
 
 
 
-       // Click About
-       await theSecurePage.clickAboutEntry();
+//        // Click About
+//        await theSecurePage.clickAboutEntry();
 
 
 
@@ -832,11 +832,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait for Sauce Labs page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('saucelabs.com'),
-           { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
-       );
+//        // Wait for Sauce Labs page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('saucelabs.com'),
+//            { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
+//        );
 
 
 
@@ -845,32 +845,32 @@ describe('My Login application', () => {
 
 
 
-       await browser.pause(1000); // short pause so About page can finish loading
+//        await browser.pause(1000); // short pause so About page can finish loading
 
-       // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
-       await browser.reloadSession();
-       await theLoginPage.open();
-       await theLoginPage.login('error_user', 'secret_sauce');
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
-       );
+//        // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
+//        await browser.reloadSession();
+//        await theLoginPage.open();
+//        await theLoginPage.login('error_user', 'secret_sauce');
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
+//        );
 
 
 
 
-       // Cart operations
-       // error_user is not showing that add to cart button here, so just make sure the inventory page loaded and keep going
-       await theSecurePage.sauceLabsBackpack.waitForExist({ timeout: 10000 });
+//        // Cart operations
+//        // error_user is not showing that add to cart button here, so just make sure the inventory page loaded and keep going
+//        await theSecurePage.sauceLabsBackpack.waitForExist({ timeout: 10000 });
 
 
 
 
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
-       await theSecurePage.clickResetAppState();
-       await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
-       await theSecurePage.clickTheXBtn();
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
+//        await theSecurePage.clickResetAppState();
+//        await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
+//        await theSecurePage.clickTheXBtn();
 
 
 
@@ -879,10 +879,10 @@ describe('My Login application', () => {
 
 
 
-       await browser.refresh();
-       // Remove button has a bug where the only way to get rid of the remove button is to select the hamburger menu, and then click Reset App State button, closing the hamburger menu, all before refreshing the page. So we are going to skip over this part since it doesn't work.
-       // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       // await theSecurePage.clickAddFirstItemToCartBtn();
+//        await browser.refresh();
+//        // Remove button has a bug where the only way to get rid of the remove button is to select the hamburger menu, and then click Reset App State button, closing the hamburger menu, all before refreshing the page. So we are going to skip over this part since it doesn't work.
+//        // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        // await theSecurePage.clickAddFirstItemToCartBtn();
 
 
 
@@ -891,11 +891,11 @@ describe('My Login application', () => {
 
 
 
-       // await browser.waitUntil(
-       //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
-       //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
-       // );
-       // await theSecurePage.clickRemoveItemFromCartBtn();
+//        // await browser.waitUntil(
+//        //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
+//        //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
+//        // );
+//        // await theSecurePage.clickRemoveItemFromCartBtn();
 
 
 
@@ -904,8 +904,8 @@ describe('My Login application', () => {
 
 
 
-       // Hamburger menu operations - Backpack -> All Items
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Hamburger menu operations - Backpack -> All Items
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
@@ -914,11 +914,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait until backpack page is fully loaded
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
-       );
+//        // Wait until backpack page is fully loaded
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
+//        );
 
 
 
@@ -927,11 +927,11 @@ describe('My Login application', () => {
 
 
 
-       // Open Hamburger menu on backpack page
-       await theSecurePage.openHamburgerMenu();
+//        // Open Hamburger menu on backpack page
+//        await theSecurePage.openHamburgerMenu();
  
-       await browser.pause(1000); // wait for menu animation
-       await theSecurePage.clickAllItemsEntry(); // waits 10s internally
+//        await browser.pause(1000); // wait for menu animation
+//        await theSecurePage.clickAllItemsEntry(); // waits 10s internally
 
 
 
@@ -940,13 +940,13 @@ describe('My Login application', () => {
 
 
 
-       // Wait until the page is the main inventory page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
-       );
-       await browser.pause(1000); // wait for any animations
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Wait until the page is the main inventory page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
+//        );
+//        await browser.pause(1000); // wait for any animations
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
@@ -955,16 +955,16 @@ describe('My Login application', () => {
 
 
 
-       // Wait until backpack page is fully loaded again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load after clicking backpack button again' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.backToProductsBtn.isExisting(),
-           { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
-       );
-       await theSecurePage.clickBackToProductsBtn();
+//        // Wait until backpack page is fully loaded again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load after clicking backpack button again' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.backToProductsBtn.isExisting(),
+//            { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
+//        );
+//        await theSecurePage.clickBackToProductsBtn();
 
 
 
@@ -973,11 +973,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait until the page is the main inventory page again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
-       );
+//        // Wait until the page is the main inventory page again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
+//        );
 
 
 
@@ -986,9 +986,9 @@ describe('My Login application', () => {
 
 
 
-       // Wait until hamburger menu button is interactable again
-       let burgerBtn = await LogoutProcess.hamburgerMenu();
-       await burgerBtn.waitForClickable({ timeout: 5000 });
+//        // Wait until hamburger menu button is interactable again
+//        let burgerBtn = await LogoutProcess.hamburgerMenu();
+//        await burgerBtn.waitForClickable({ timeout: 5000 });
 
 
 
@@ -997,8 +997,8 @@ describe('My Login application', () => {
 
 
 
-       // Scroll it into view just in case
-       await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
+//        // Scroll it into view just in case
+//        await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
 
 
 
@@ -1007,16 +1007,16 @@ describe('My Login application', () => {
 
 
 
-       // Now call your existing logout
-       await LogoutProcess.logout();
-   });
-});
+//        // Now call your existing logout
+//        await LogoutProcess.logout();
+//    });
+// });
 
 
 
 
-// My REFERENCE:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
-describe('My Login application', () => {
+// // My REFERENCE:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
+// describe('My Login application', () => {
 
 
 
@@ -1025,14 +1025,14 @@ describe('My Login application', () => {
 
 
 
-   it('should login with valid credentials using the visual_user username to sign in and visit Sauce Labs', async () => {
-       await browser.reloadSession();
-       await browser.url('https://www.saucedemo.com/');
+//    it('should login with valid credentials using the visual_user username to sign in and visit Sauce Labs', async () => {
+//        await browser.reloadSession();
+//        await browser.url('https://www.saucedemo.com/');
        
-        // Login
-       await theLoginPage.open();
-       await theLoginPage.login('visual_user', 'secret_sauce');
-       await expect(theSecurePage.landingPage).toBeExisting();
+//         // Login
+//        await theLoginPage.open();
+//        await theLoginPage.login('visual_user', 'secret_sauce');
+//        await expect(theSecurePage.landingPage).toBeExisting();
 
 
 
@@ -1041,9 +1041,9 @@ describe('My Login application', () => {
 
 
 
-       // Open Hamburger Menu
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
+//        // Open Hamburger Menu
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
 
 
 
@@ -1052,15 +1052,15 @@ describe('My Login application', () => {
 
 
 
-       // Wait for About link to exist and be clickable
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isExisting(),
-           { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.aboutEntry.isClickable(),
-           { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
-       );
+//        // Wait for About link to exist and be clickable
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isExisting(),
+//            { timeout: 5000, timeoutMsg: 'About link did not appear after 5 seconds' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.aboutEntry.isClickable(),
+//            { timeout: 5000, timeoutMsg: 'About link was not clickable after 5 seconds' }
+//        );
 
 
 
@@ -1069,11 +1069,11 @@ describe('My Login application', () => {
 
 
 
-       // Force About link to open in same tab
-       await browser.execute(() => {
-           const link = document.querySelector('#about_sidebar_link');
-           if (link) link.setAttribute('target', '_self');
-       });
+//        // Force About link to open in same tab
+//        await browser.execute(() => {
+//            const link = document.querySelector('#about_sidebar_link');
+//            if (link) link.setAttribute('target', '_self');
+//        });
 
 
 
@@ -1082,8 +1082,8 @@ describe('My Login application', () => {
 
 
 
-       // Click About
-       await theSecurePage.clickAboutEntry();
+//        // Click About
+//        await theSecurePage.clickAboutEntry();
 
 
 
@@ -1092,11 +1092,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait for Sauce Labs page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('saucelabs.com'),
-           { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
-       );
+//        // Wait for Sauce Labs page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('saucelabs.com'),
+//            { timeout: 10000, timeoutMsg: 'Page transition to Sauce Labs failed' }
+//        );
 
 
 
@@ -1105,16 +1105,16 @@ describe('My Login application', () => {
 
 
 
-       await browser.pause(1000); // short pause so About page can finish loading
+//        await browser.pause(1000); // short pause so About page can finish loading
 
-       // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
-       await browser.reloadSession();
-       await theLoginPage.open();
-       await theLoginPage.login('visual_user', 'secret_sauce');
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
-       );
+//        // Sauce Labs page hangs on this machine, so re-login directly and continue test flow
+//        await browser.reloadSession();
+//        await theLoginPage.open();
+//        await theLoginPage.login('visual_user', 'secret_sauce');
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Failed to return to inventory after re-login' }
+//        );
 
 
 
@@ -1123,9 +1123,9 @@ describe('My Login application', () => {
 
 
 
-       // Cart operations
-       // visual_user is not showing that add to cart button here, so just make sure the inventory page loaded and keep going
-       await theSecurePage.sauceLabsBackpack.waitForExist({ timeout: 10000 });
+//        // Cart operations
+//        // visual_user is not showing that add to cart button here, so just make sure the inventory page loaded and keep going
+//        await theSecurePage.sauceLabsBackpack.waitForExist({ timeout: 10000 });
 
 
 
@@ -1134,11 +1134,11 @@ describe('My Login application', () => {
 
 
 
-       await theSecurePage.openHamburgerMenu();
-       await browser.pause(500); // wait for menu animation
-       await theSecurePage.clickResetAppState();
-       await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
-       await theSecurePage.clickTheXBtn();
+//        await theSecurePage.openHamburgerMenu();
+//        await browser.pause(500); // wait for menu animation
+//        await theSecurePage.clickResetAppState();
+//        await theSecurePage.theXBtn.waitForClickable({ timeout: 5000 });
+//        await theSecurePage.clickTheXBtn();
 
 
 
@@ -1147,10 +1147,10 @@ describe('My Login application', () => {
 
 
 
-       await browser.refresh();
-       // Remove button has a bug where the only way to get rid of the remove button is to select the hamburger menu, and then click Reset App State button, closing the hamburger menu, all before refreshing the page. So we are going to skip over this part since it doesn't work.
-       // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
-       // await theSecurePage.clickAddFirstItemToCartBtn();
+//        await browser.refresh();
+//        // Remove button has a bug where the only way to get rid of the remove button is to select the hamburger menu, and then click Reset App State button, closing the hamburger menu, all before refreshing the page. So we are going to skip over this part since it doesn't work.
+//        // await theSecurePage.addFirstItemToCartBtn.waitForClickable();
+//        // await theSecurePage.clickAddFirstItemToCartBtn();
 
 
 
@@ -1159,11 +1159,11 @@ describe('My Login application', () => {
 
 
 
-       // await browser.waitUntil(
-       //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
-       //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
-       // );
-       // await theSecurePage.clickRemoveItemFromCartBtn();
+//        // await browser.waitUntil(
+//        //     async () => theSecurePage.removeItemFromCartBtn.isClickable(),
+//        //     { timeout: 5000, timeoutMsg: 'Remove from cart button was not clickable after 5 seconds' }
+//        // );
+//        // await theSecurePage.clickRemoveItemFromCartBtn();
 
 
 
@@ -1172,8 +1172,8 @@ describe('My Login application', () => {
 
 
 
-       // Hamburger menu operations - Backpack -> All Items
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Hamburger menu operations - Backpack -> All Items
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
@@ -1182,11 +1182,11 @@ describe('My Login application', () => {
 
 
 
-       // Wait until backpack page is fully loaded
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
-       );
+//        // Wait until backpack page is fully loaded
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load' }
+//        );
 
 
 
@@ -1195,11 +1195,11 @@ describe('My Login application', () => {
 
 
 
-       // Open Hamburger menu on backpack page
-       await theSecurePage.openHamburgerMenu();
+//        // Open Hamburger menu on backpack page
+//        await theSecurePage.openHamburgerMenu();
  
-       await browser.pause(1000); // wait for menu animation
-       await theSecurePage.clickAllItemsEntry(); // waits 10s internally
+//        await browser.pause(1000); // wait for menu animation
+//        await theSecurePage.clickAllItemsEntry(); // waits 10s internally
 
 
 
@@ -1208,82 +1208,72 @@ describe('My Login application', () => {
 
 
 
-       // Wait until the page is the main inventory page
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
-       );
-       await browser.pause(1000); // wait for any animations
-       await theSecurePage.clickSauceLabsBackpackBtn();
+//        // Wait until the page is the main inventory page
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking All Items' }
+//        );
+//        await browser.pause(1000); // wait for any animations
+//        await theSecurePage.clickSauceLabsBackpackBtn();
 
 
 
 
-       //Click Add to cart and click Remove right after before leaving the backpack page back to the homepage Swag Labs
-       //Clicking the Add to cart button:
-       // await browser.waitUntil(
-       //     async () => theSecurePage.addToCartBtnForSLBPage.isExisting(),
-       //     { timeout: 10000, timeoutMsg: 'Adding to cart button on the Sauce Labs Backpack page does not work properly'}
-       // );
-       //The browser.waitUntil() below this line of text/code is there in case the await theSecurePage.addToCartBtnForSLBPage.waitForDisplayed and clickAddToCartBtnForSLBPage fails.
-       await theSecurePage.addToCartBtnForSLBPage.waitForDisplayed({ timeout: 10000 });
-       await theSecurePage.clickAddToCartBtnForSLBPage();
+//        //Click Add to cart and click Remove right after before leaving the backpack page back to the homepage Swag Labs
+//        //Clicking the Add to cart button:
+//        // await browser.waitUntil(
+//        //     async () => theSecurePage.addToCartBtnForSLBPage.isExisting(),
+//        //     { timeout: 10000, timeoutMsg: 'Adding to cart button on the Sauce Labs Backpack page does not work properly'}
+//        // );
+//        //The browser.waitUntil() below this line of text/code is there in case the await theSecurePage.addToCartBtnForSLBPage.waitForDisplayed and clickAddToCartBtnForSLBPage fails.
+//        await theSecurePage.addToCartBtnForSLBPage.waitForDisplayed({ timeout: 10000 });
+//        await theSecurePage.clickAddToCartBtnForSLBPage();
 
 
 
 
-       //Clicking the Remove button while in the backpack page:
+//        //Clicking the Remove button while in the backpack page:
 
 
 
 
-       //The browser.waitUntil() below this line of text/code is there in case the await theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.waitForDisplayed and clickRemoveSauceLabsBackpackButtonNotOnMainPage fails.
-       // await browser.waitUntil(
-       //     async () => theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.isExisting(),
-       //     { timeout: 10000, timeoutMsg: 'The Remove button on the Sauce Labs Backpack page does not work properly' }
-       // )
-       await theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.waitForDisplayed({ timeout: 5000 });
-       await theSecurePage.clickRemoveSauceLabsBackpackButtonNotOnMainPage();
+//        //The browser.waitUntil() below this line of text/code is there in case the await theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.waitForDisplayed and clickRemoveSauceLabsBackpackButtonNotOnMainPage fails.
+//        // await browser.waitUntil(
+//        //     async () => theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.isExisting(),
+//        //     { timeout: 10000, timeoutMsg: 'The Remove button on the Sauce Labs Backpack page does not work properly' }
+//        // )
+//        await theSecurePage.removeSauceLabsBackpackButtonNotOnMainPage.waitForDisplayed({ timeout: 5000 });
+//        await theSecurePage.clickRemoveSauceLabsBackpackButtonNotOnMainPage();
 
 
 
 
-       // Wait until backpack page is fully loaded again
-       //Lets refresh the page to make sure the removal of the Sauce Labs Backpack has done it completely
-       await browser.refresh();
+//        // Wait until backpack page is fully loaded again
+//        //Lets refresh the page to make sure the removal of the Sauce Labs Backpack has done it completely
+//        await browser.refresh();
      
-       //Lets wait for the browser to refresh before continuing on to the final steps before Logout
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
-           { timeout: 10000, timeoutMsg: 'Backpack page did not load after refreshing the Sauce Labs Backpack page' }
-       );
-       await browser.waitUntil(
-           async () => theSecurePage.backToProductsBtn.isExisting(),
-           { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
-       );
-       await theSecurePage.clickBackToProductsBtn();
+//        //Lets wait for the browser to refresh before continuing on to the final steps before Logout
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory-item.html?id=4'),
+//            { timeout: 10000, timeoutMsg: 'Backpack page did not load after refreshing the Sauce Labs Backpack page' }
+//        );
+//        await browser.waitUntil(
+//            async () => theSecurePage.backToProductsBtn.isExisting(),
+//            { timeout: 10000, timeoutMsg: 'Back to Products button did not exist on backpack page' }
+//        );
+//        await theSecurePage.clickBackToProductsBtn();
 
 
-       // Wait until the page is the main inventory page again
-       await browser.waitUntil(
-           async () => (await browser.getUrl()).includes('inventory.html'),
-           { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
-       );
+//        // Wait until the page is the main inventory page again
+//        await browser.waitUntil(
+//            async () => (await browser.getUrl()).includes('inventory.html'),
+//            { timeout: 10000, timeoutMsg: 'Main inventory page did not load after clicking Back to Products' }
+//        );
 
 
-       // Wait until hamburger menu button is interactable again
-       let burgerBtn = await LogoutProcess.hamburgerMenu();
-       await burgerBtn.waitForClickable({ timeout: 5000 });
-
-
-
-
-
-
-
-
-       // Scroll it into view just in case
-       await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
+//        // Wait until hamburger menu button is interactable again
+//        let burgerBtn = await LogoutProcess.hamburgerMenu();
+//        await burgerBtn.waitForClickable({ timeout: 5000 });
 
 
 
@@ -1292,10 +1282,8 @@ describe('My Login application', () => {
 
 
 
-       // Now call your existing logout
-       await LogoutProcess.logout();
-   });
-});
+//        // Scroll it into view just in case
+//        await burgerBtn.scrollIntoView({ block: 'start', inline: 'start' });
 
 
 
@@ -1304,24 +1292,33 @@ describe('My Login application', () => {
 
 
 
-// TEST 2 OF THE AUTOMATION FROM TEST 1 FOR THE REST OF THE POSITIVE USERS WILL BE DONE BY:
-// switch (username) {
-//     case 'problem_user':
-//         // Do problem user stuff
-//         break;
-//     case 'visual_user':
-//         // Do visual user stuff
-//         break;
-//     case 'error_user':
-//         // Do error user stuff
-//         break;
-//     default:
-//         // This runs for anyone not listed above (like standard_user)
-//         break;
-// }
+//        // Now call your existing logout
+//        await LogoutProcess.logout();
+//    });
+// });
 
 
 
+
+
+
+
+
+// // TEST 2 OF THE AUTOMATION FROM TEST 1 FOR THE REST OF THE POSITIVE USERS WILL BE DONE BY:
+// // switch (username) {
+// //     case 'problem_user':
+// //         // Do problem user stuff
+// //         break;
+// //     case 'visual_user':
+// //         // Do visual user stuff
+// //         break;
+// //     case 'error_user':
+// //         // Do error user stuff
+// //         break;
+// //     default:
+// //         // This runs for anyone not listed above (like standard_user)
+// //         break;
+// // }
 
 
 
@@ -1331,47 +1328,50 @@ describe('My Login application', () => {
 
 
 
-// TEST 2 OF THE AUTOMATION FROM TEST 1 FOR THE REST OF THE POSITIVE USERS WILL BE DONE BY:
-// switch (username) {
-//     case 'problem_user':
-//         // Do problem user stuff
-//         break;
-//     case 'visual_user':
-//         // Do visual user stuff
-//         break;
-//     case 'error_user':
-//         // Do error user stuff
-//         break;
-//     default:
-//         // This runs for anyone not listed above (like standard_user)
-//         break;
-// }
-
-
-//// Add these usernames to my negative test:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
-describe('Negative Login Tests', () => {
-   // Negative tests
-   const negativeTests = [
-       { username: 'standard_user', password: '', errorElement: () => theSecurePage.needsPassword, description: 'empty password' },
-       { username: '', password: 'secret_sauce', errorElement: () => theSecurePage.needsUsername, description: 'empty username' },
-       { username: '', password: '', errorElement: () => theSecurePage.needsUsername, description: 'both fields empty' }
-   ];
 
 
 
+// // TEST 2 OF THE AUTOMATION FROM TEST 1 FOR THE REST OF THE POSITIVE USERS WILL BE DONE BY:
+// // switch (username) {
+// //     case 'problem_user':
+// //         // Do problem user stuff
+// //         break;
+// //     case 'visual_user':
+// //         // Do visual user stuff
+// //         break;
+// //     case 'error_user':
+// //         // Do error user stuff
+// //         break;
+// //     default:
+// //         // This runs for anyone not listed above (like standard_user)
+// //         break;
+// // }
+
+
+// //// Add these usernames to my negative test:  const positiveUsers = ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
+// describe('Negative Login Tests', () => {
+//    // Negative tests
+//    const negativeTests = [
+//        { username: 'standard_user', password: '', errorElement: () => theSecurePage.needsPassword, description: 'empty password' },
+//        { username: '', password: 'secret_sauce', errorElement: () => theSecurePage.needsUsername, description: 'empty username' },
+//        { username: '', password: '', errorElement: () => theSecurePage.needsUsername, description: 'both fields empty' }
+//    ];
 
 
 
 
 
-   for (let test of negativeTests) {
-       it(`should fail login with ${test.description}`, async () => {
-           await browser.reloadSession();
-           await theLoginPage.open();
-           await theLoginPage.login(test.username, test.password);
-           await expect(test.errorElement()).toBeExisting();
-       });
-   }
-});
+
+
+
+//    for (let test of negativeTests) {
+//        it(`should fail login with ${test.description}`, async () => {
+//            await browser.reloadSession();
+//            await theLoginPage.open();
+//            await theLoginPage.login(test.username, test.password);
+//            await expect(test.errorElement()).toBeExisting();
+//        });
+//    }
+// });
 
 
